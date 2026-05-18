@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 가계부 - 대시보드</title>
+    <meta name="description" content="직관적인 개인 자산 관리 대시보드">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Pretendard:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                    <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                </svg>
+                <h1>20224362 장홍서</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">대시보드</a>
+                <a href="details.html">상세내역</a>
+                <a href="calendar.html">달력</a>
+                <a href="assets.html">자산관리</a>
+            </nav>
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-btn" aria-label="다크모드 토글">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <button id="mobileMenuBtn" class="icon-btn mobile-only" aria-label="메뉴 토글">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="active">대시보드</a>
+        <a href="details.html">상세내역</a>
+        <a href="calendar.html">달력</a>
+        <a href="assets.html">자산관리</a>
+    </div>
+
+    <main class="container">
+        <!-- Summary Cards -->
+        <section class="summary-cards">
+            <article class="card balance-card glass">
+                <p class="card-label">총 자산</p>
+                <h3 class="amount" id="totalBalance">0 원</h3>
+                <div class="card-glow"></div>
+            </article>
+            <article class="card income-card glass">
+                <div class="card-icon income-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <p class="card-label">이번 달 수입</p>
+                    <p class="amount positive" id="totalIncome">+ 0 원</p>
+                </div>
+            </article>
+            <article class="card expense-card glass">
+                <div class="card-icon expense-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <p class="card-label">이번 달 지출</p>
+                    <p class="amount negative" id="totalExpense">- 0 원</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Budget Section -->
+        <section class="budget-section" style="margin-bottom: 2rem;">
+            <article class="card glass budget-card">
+                <div class="card-header" style="margin-bottom: 1rem;">
+                    <h2>이번 달 예산 현황</h2>
+                    <button id="setBudgetBtn" class="icon-btn" aria-label="예산 설정" style="font-size: 1.2rem;">⚙️</button>
+                </div>
+                <div class="budget-progress-container">
+                    <div class="budget-bar">
+                        <div class="budget-fill" id="budgetFill" style="width: 0%;"></div>
+                    </div>
+                    <div class="budget-info">
+                        <span id="budgetSpent" style="font-weight: 600;">0 원</span>
+                        <span id="budgetTotal" class="text-muted">/ 0 원</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Main Content (Dashboard) -->
+        <section class="dashboard-content">
+            <div class="chart-container card glass">
+                <div class="card-header">
+                    <h2>카테고리별 지출</h2>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+                <div id="noDataMessage" class="no-data-message" style="display: none;">
+                    데이터가 없습니다
+                </div>
+            </div>
+
+            <div class="chart-container card glass">
+                <div class="card-header">
+                    <h2>최근 6개월 수입/지출 추이</h2>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <div id="noTrendDataMessage" class="no-data-message" style="display: none;">
+                    데이터가 없습니다
+                </div>
+            </div>
+
+            <div class="recent-transactions card glass">
+                <div class="card-header">
+                    <h2>최근 내역</h2>
+                    <a href="details.html" class="view-all">전체보기 <span>→</span></a>
+                </div>
+                <ul id="recentList" class="transaction-list">
+                    <!-- JS injected items -->
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="addBtn" aria-label="내역 추가">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+    </button>
+
+    <!-- Add Transaction Modal -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal-content glass-modal">
+            <div class="modal-header">
+                <h2>새 내역 추가</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="transactionForm">
+                <div class="form-group type-selector">
+                    <input type="radio" id="typeExpense" name="type" value="expense" checked>
+                    <label for="typeExpense" class="type-btn expense-btn">지출</label>
+                    <input type="radio" id="typeIncome" name="type" value="income">
+                    <label for="typeIncome" class="type-btn income-btn">수입</label>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">금액</label>
+                        <div class="input-with-icon">
+                            <span class="currency-symbol">₩</span>
+                            <input type="number" id="amount" required placeholder="0" min="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row split">
+                    <div class="form-group">
+                        <label for="date">날짜</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">카테고리</label>
+                        <select id="category" required>
+                            <option value="식비">🍔 식비</option>
+                            <option value="교통">🚌 교통비</option>
+                            <option value="쇼핑">🛍️ 쇼핑</option>
+                            <option value="주거">🏠 주거/통신</option>
+                            <option value="문화">🍿 문화/여가</option>
+                            <option value="기타">✨ 기타</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="memo">메모</label>
+                    <input type="text" id="memo" placeholder="어디서 사용하셨나요?" autocomplete="off">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="submit" class="submit-btn">저장하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
