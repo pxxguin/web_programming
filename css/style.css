@@ -809,7 +809,49 @@ select:focus {
 }
 
 .cell-amount.income { color: var(--income-color); }
+.cell-amount.income { color: var(--income-color); }
 .cell-amount.expense { color: var(--expense-color); }
+
+/* Calendar Highlights */
+.calendar-cell.max-expense {
+    border: 2px solid var(--expense-color);
+    background: rgba(239, 68, 68, 0.05);
+}
+.calendar-cell.min-expense {
+    border: 2px solid var(--income-color);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+/* Asset / Fixed Expense specific */
+.stop-btn {
+    background: none;
+    border: 1px solid var(--expense-color);
+    color: var(--expense-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.stop-btn:hover {
+    background: var(--expense-color);
+    color: white;
+}
+.status-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    background: var(--card-border);
+    color: var(--text-muted);
+}
+.status-badge.active {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--income-color);
+}
+.status-badge.stopped {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--expense-color);
+}
 
 
 /* Responsive */
