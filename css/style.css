@@ -1077,16 +1077,6 @@ select:focus {
 }
 
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: var(--surface-default);
-  transition: background-color 0.5s;
-}
-
 .dark-light-toggle {
   display: flex;
   justify-content: center;

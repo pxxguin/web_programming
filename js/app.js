@@ -266,20 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else budgetFill.classList.remove('warning');
         }
     };
-    
-    document.addEventListener("DOMContentLoaded", function () {
-    const savedTheme = localStorage.getItem("color-theme") || "light";
-    document.documentElement.setAttribute("color-theme", savedTheme);
-    });
-
-    const toggleButton = document.querySelector('.dark-light-toggle');
-
-    toggleButton.addEventListener('click', () => {      
-    const currentTheme = document.documentElement.getAttribute("color-theme");
-    const newTheme = currentTheme === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("color-theme", newTheme);
-    localStorage.setItem("color-theme", newTheme);
-    });
 
     const updateRecentList = () => {
         if (!recentListEl) return;
@@ -633,22 +619,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === 5. 이벤트 핸들러 ===
     const initTheme = () => {
-        if (localStorage.getItem(THEME_KEY) === 'dark') {
-            htmlEl.setAttribute('data-theme', 'dark');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
+        const savedTheme = localStorage.getItem(THEME_KEY) || localStorage.getItem('color-theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        htmlEl.setAttribute('color-theme', savedTheme);
+        
+        if (savedTheme === 'dark') {
+            if (sunIcon) sunIcon.style.display = 'none';
+            if (moonIcon) moonIcon.style.display = 'block';
+        } else {
+            if (sunIcon) sunIcon.style.display = 'block';
+            if (moonIcon) moonIcon.style.display = 'none';
         }
     };
 
-    themeToggleBtn.addEventListener('click', () => {
+    const handleThemeToggle = () => {
         const next = htmlEl.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         htmlEl.setAttribute('data-theme', next);
+        htmlEl.setAttribute('color-theme', next);
         localStorage.setItem(THEME_KEY, next);
-        sunIcon.style.display = next === 'dark' ? 'none' : 'block';
-        moonIcon.style.display = next === 'dark' ? 'block' : 'none';
+        localStorage.setItem('color-theme', next);
+        
+        if (sunIcon) sunIcon.style.display = next === 'dark' ? 'none' : 'block';
+        if (moonIcon) moonIcon.style.display = next === 'dark' ? 'block' : 'none';
+        
         updateChart();
         updateTrendChart();
-    });
+    };
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', handleThemeToggle);
+    }
+    
+    const newToggleButton = document.querySelector('.dark-light-toggle');
+    if (newToggleButton) {
+        newToggleButton.addEventListener('click', handleThemeToggle);
+    }
 
     mobileMenuBtn.addEventListener('click', () => mobileNav.classList.toggle('open'));
 
