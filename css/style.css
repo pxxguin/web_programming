@@ -7,19 +7,21 @@
     --text-muted: #64748b;
     --primary-color: #4f46e5;
     --primary-hover: #4338ca;
-    
-    --income-color: #10b981; /* Mint Green */
+
+    --income-color: #10b981;
+    /* Mint Green */
     --income-bg: rgba(16, 185, 129, 0.1);
-    
-    --expense-color: #ef4444; /* Coral Red */
+
+    --expense-color: #ef4444;
+    /* Coral Red */
     --expense-bg: rgba(239, 68, 68, 0.1);
-    
+
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
     --hover-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
-    
+
     --header-bg: rgba(255, 255, 255, 0.8);
     --modal-bg: rgba(255, 255, 255, 0.85);
-    
+
     /* Layout */
     --border-radius: 20px;
     --transition-speed: 0.3s;
@@ -34,16 +36,16 @@
     --text-muted: #94a3b8;
     --primary-color: #6366f1;
     --primary-hover: #818cf8;
-    
+
     --income-color: #34d399;
     --income-bg: rgba(52, 211, 153, 0.15);
-    
+
     --expense-color: #f87171;
     --expense-bg: rgba(248, 113, 113, 0.15);
-    
+
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     --hover-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-    
+
     --header-bg: rgba(15, 23, 42, 0.8);
     --modal-bg: rgba(30, 41, 59, 0.85);
 }
@@ -80,7 +82,10 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
 }
@@ -282,13 +287,15 @@ h1, h2, h3, h4 {
     color: var(--expense-color);
 }
 
-.income-card, .expense-card {
+.income-card,
+.expense-card {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
-.income-card .card-icon, .expense-card .card-icon {
+.income-card .card-icon,
+.expense-card .card-icon {
     margin-bottom: 0;
 }
 
@@ -407,7 +414,7 @@ h1, h2, h3, h4 {
     color: var(--expense-color);
 }
 
-.delete-btn {
+.delete-btn, .edit-btn {
     background: none;
     border: none;
     color: var(--text-muted);
@@ -420,6 +427,18 @@ h1, h2, h3, h4 {
 .delete-btn:hover {
     color: var(--expense-color);
     background: var(--expense-bg);
+}
+
+.edit-btn:hover {
+    color: var(--primary-color);
+    background: var(--primary-bg);
+}
+
+.interest-info {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
+    font-weight: 500;
 }
 
 /* Details Page specific */
@@ -643,13 +662,13 @@ select:focus {
     color: var(--text-muted);
 }
 
-#typeExpense:checked + .expense-btn {
+#typeExpense:checked+.expense-btn {
     border-color: var(--expense-color);
     background: var(--expense-bg);
     color: var(--expense-color);
 }
 
-#typeIncome:checked + .income-btn {
+#typeIncome:checked+.income-btn {
     border-color: var(--income-color);
     background: var(--income-bg);
     color: var(--income-color);
@@ -743,7 +762,8 @@ select:focus {
     flex-direction: column;
 }
 
-.day-header, .calendar-days {
+.day-header,
+.calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 }
@@ -757,8 +777,13 @@ select:focus {
     color: var(--text-muted);
 }
 
-.text-red { color: var(--expense-color) !important; }
-.text-blue { color: var(--primary-color) !important; }
+.text-red {
+    color: var(--expense-color) !important;
+}
+
+.text-blue {
+    color: var(--primary-color) !important;
+}
 
 .calendar-days {
     gap: 0.5rem;
@@ -772,11 +797,12 @@ select:focus {
     background: rgba(255, 255, 255, 0.03);
     display: flex;
     flex-direction: column;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
 }
-
 .calendar-cell:hover {
     background: var(--card-border);
+    transform: translateY(-2px);
 }
 
 .calendar-cell.empty {
@@ -808,15 +834,24 @@ select:focus {
     margin-top: 2px;
 }
 
-.cell-amount.income { color: var(--income-color); }
-.cell-amount.income { color: var(--income-color); }
-.cell-amount.expense { color: var(--expense-color); }
+.cell-amount.income {
+    color: var(--income-color);
+}
+
+.cell-amount.income {
+    color: var(--income-color);
+}
+
+.cell-amount.expense {
+    color: var(--expense-color);
+}
 
 /* Calendar Highlights */
 .calendar-cell.max-expense {
     border: 2px solid var(--expense-color);
     background: rgba(239, 68, 68, 0.05);
 }
+
 .calendar-cell.min-expense {
     border: 2px solid var(--income-color);
     background: rgba(16, 185, 129, 0.05);
@@ -833,10 +868,12 @@ select:focus {
     cursor: pointer;
     transition: all 0.2s;
 }
+
 .stop-btn:hover {
     background: var(--expense-color);
     color: white;
 }
+
 .status-badge {
     font-size: 0.75rem;
     padding: 0.2rem 0.5rem;
@@ -844,10 +881,12 @@ select:focus {
     background: var(--card-border);
     color: var(--text-muted);
 }
+
 .status-badge.active {
     background: rgba(16, 185, 129, 0.2);
     color: var(--income-color);
 }
+
 .status-badge.stopped {
     background: rgba(239, 68, 68, 0.2);
     color: var(--expense-color);
@@ -859,33 +898,168 @@ select:focus {
     .dashboard-content {
         grid-template-columns: 1fr;
     }
-    
+
     .nav-links {
         display: none;
     }
-    
+
     .mobile-only {
         display: flex;
     }
-    
+
     .header-container {
         padding: 1rem;
     }
-    
+
     .container {
         padding: 0 1rem;
     }
-    
+
     .filter-section {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .filter-group {
         width: 100%;
     }
-    
+
     .filter-group select {
         flex: 1;
     }
+}
+
+/* Feature 1: Trend Indicators */
+.trend-indicator {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.trend-indicator.bad {
+    color: var(--expense-color);
+}
+
+.trend-indicator.good {
+    color: var(--income-color);
+}
+
+.trend-indicator.neutral {
+    color: var(--text-muted);
+}
+
+/* Drill-down */
+.drill-down-container {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--card-border);
+    animation: slideDown 0.3s ease;
+}
+
+.drill-down-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.drill-down-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.drill-down-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.drill-down-list::-webkit-scrollbar-thumb {
+    background-color: var(--card-border);
+    border-radius: 4px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Feature 2: Savings Goals */
+.goal-progress-container {
+    width: 100%;
+    margin-top: 0.8rem;
+}
+
+.goal-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--card-border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.goal-fill {
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.goal-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.goal-stats strong {
+    color: var(--text-main);
+}
+
+/* Feature 4: Gamification */
+.streak-badge {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.calendar-cell.no-spend-day {
+    position: relative;
+    border: 2px solid rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.calendar-cell.no-spend-day::after {
+    content: '⭐️';
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    opacity: 0.8;
 }

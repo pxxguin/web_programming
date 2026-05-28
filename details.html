@@ -117,13 +117,19 @@
                     <label for="typeIncome" class="type-btn income-btn">수입</label>
                 </div>
                 
-                <div class="form-row">
+                <div class="form-row split">
                     <div class="form-group">
                         <label for="amount">금액</label>
                         <div class="input-with-icon">
                             <span class="currency-symbol">₩</span>
                             <input type="number" id="amount" required placeholder="0" min="1">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionAccount">연결 통장</label>
+                        <select id="transactionAccount" required>
+                            <option value="none">지정 안함 (현금)</option>
+                        </select>
                     </div>
                 </div>
 

@@ -46,19 +46,24 @@
         <section class="card glass calendar-section">
             <div class="calendar-header">
                 <button id="prevMonth" class="icon-btn">◀</button>
-                <h2 id="currentMonthYear">2026년 5월</h2>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <h2 id="currentMonthYear">2026년 5월</h2>
+                    <div id="streakBadge" class="streak-badge" style="display: none;"></div>
+                </div>
                 <button id="nextMonth" class="icon-btn">▶</button>
             </div>
             
             <div class="calendar-grid">
                 <!-- 요일 헤더 -->
-                <div class="day-header text-red">일</div>
-                <div class="day-header">월</div>
-                <div class="day-header">화</div>
-                <div class="day-header">수</div>
-                <div class="day-header">목</div>
-                <div class="day-header">금</div>
-                <div class="day-header text-blue">토</div>
+                <div class="day-header">
+                    <div class="text-red">일</div>
+                    <div>월</div>
+                    <div>화</div>
+                    <div>수</div>
+                    <div>목</div>
+                    <div>금</div>
+                    <div class="text-blue">토</div>
+                </div>
                 
                 <!-- 날짜 셀은 JS로 생성 -->
                 <div id="calendarDays" class="calendar-days"></div>
@@ -86,13 +91,19 @@
                     <label for="typeIncome" class="type-btn income-btn">수입</label>
                 </div>
                 
-                <div class="form-row">
+                <div class="form-row split">
                     <div class="form-group">
                         <label for="amount">금액</label>
                         <div class="input-with-icon">
                             <span class="currency-symbol">₩</span>
                             <input type="number" id="amount" required placeholder="0" min="1">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionAccount">연결 통장</label>
+                        <select id="transactionAccount" required>
+                            <option value="none">지정 안함 (현금)</option>
+                        </select>
                     </div>
                 </div>
 
@@ -124,6 +135,21 @@
                     <button type="submit" class="submit-btn">저장하기</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Daily Details Modal -->
+    <div class="modal-overlay" id="dailyDetailsModal">
+        <div class="modal-content glass-modal">
+            <div class="modal-header">
+                <h2 id="dailyDetailsTitle">날짜 상세 내역</h2>
+                <button class="close-btn" id="closeDailyDetailsModal">&times;</button>
+            </div>
+            <div class="recent-transactions" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+                <ul id="dailyDetailsList" class="transaction-list" style="max-height: 400px; overflow-y: auto;">
+                    <!-- JS injected -->
+                </ul>
+            </div>
         </div>
     </div>
 
