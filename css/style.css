@@ -1063,3 +1063,93 @@ select:focus {
     font-size: 1.2rem;
     opacity: 0.8;
 }
+
+:root[color-theme='light'] {
+  --surface-default: #F2F0EE;
+  --btn-default: #FFFFFF;
+  --btn-svg-hover: #FFA500;
+}
+
+:root[color-theme='dark'] {
+  --surface-default: #17171C;
+  --btn-default: #23232B;
+  --btn-svg-hover: gold;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: var(--surface-default);
+  transition: background-color 0.5s;
+}
+
+.dark-light-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: var(--btn-default);
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: background-color 0.5s;
+}   
+
+.icon30 {
+  display: flex;
+  justify-content: center;
+  align-items: center;      
+  width: 30px;
+  height: 30px;  
+  position: absolute;
+}
+.icon30>svg{
+  transition: fill 0.5s, transform 0.5s ease;   
+}
+
+.sun {
+  animation: rise-animation 1s forwards;
+  transform-origin: 50% 200%
+}
+.moon {
+  animation: set-animation 1s forwards;
+  transform-origin: 50% 200%;
+}
+
+[color-theme='dark'] .dark-light-toggle .sun {
+  animation: set-animation 1s forwards;
+}
+[color-theme='dark'] .dark-light-toggle .moon {
+  animation: rise-animation 1s forwards;
+}
+
+.dark-light-toggle:hover svg {
+  fill: var(--btn-svg-hover);
+  transform: scale(1.2);
+}
+
+@keyframes rise-animation {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes set-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
